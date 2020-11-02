@@ -1,22 +1,40 @@
 import * as React from 'react';
 import { Text, View ,StyleSheet, TouchableOpacity, Image } from 'react-native';
-// import siren from '../assets/siren'
-export default function Doicuuho () {
+export default function Doicuuho (props) {
 
     const sukienClick = () => {
-        console.log('sukienClick ::: ')
+        props.navigation.navigate('Level')
     }
     
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-       
-       <TouchableOpacity
+            <View>
+                <Text style={styles.textHeader}>
+                    Xin chào, AAA
+                </Text>
+            </View>
+            <View style={{ width: '80%',paddingTop: 10, paddingBottom: 150}}>
+                <View style={styles.Item}>
+                    <Image 
+                        source={require('../assets/Img/User/wt.png')} 
+                        style={{width: 100, height: 100}}
+                    />
+                    <Text style={styles.TextItem}> Mưa ... </Text>
+                </View>
+                <View style={styles.Item}>
+                    <Image 
+                        source={require('../assets/Img/User/tp.png')} 
+                        style={{width: 100, height: 100}}
+                    />
+                    <Text style={styles.TextItem}> Nhiet do ... </Text>
+                </View>
+            </View>
+            <TouchableOpacity
                 onPress={sukienClick}
                 style={styles.hop}
             >
-            <Image style={{ width: 89, height:89 }} source={require('../assets/siren.png')} />
-            <Text style={styles.yeucau}> Cầu cứu !</Text>
-
+                <Image style={{ width: 89, height:89 }} source={require('../assets/siren.png')} />
+                <Text style={styles.yeucau}> Cầu cứu !</Text>
             </TouchableOpacity>
       </View>
     );
@@ -38,7 +56,20 @@ const styles = StyleSheet.create({
         borderColor: '#BDBDBD',
         backgroundColor: '#FA5858',
         alignItems: 'center'
+    },
+    Item: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center'
+    },
+    TextItem:{
+        fontSize: 24
+    },
+    textHeader:{
+        fontSize: 24,
+        marginBottom: 20,
+        fontWeight: '500'
     }
-
 });
 

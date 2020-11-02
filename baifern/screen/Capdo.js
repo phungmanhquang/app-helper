@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function Capdo() {
+export default function Capdo(props) {
     const sukienClick = () => {
-        console.log('sukienClick ::: ')
+        props.navigation.navigate('Confirm')
     }
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

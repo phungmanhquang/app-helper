@@ -8,22 +8,36 @@ import Doicuuho from './screen/Doicuuho';
 import Capdo from './screen/Capdo';
 import Xacnhan from './screen/Xacnhan';
 import Chapnhan from './screen/Chapnhan';
+import IntroScreen from './screen/Intro';
+import { enableScreens } from 'react-native-screens';
+import { createNativeStackNavigator } from 'react-native-screens/native-stack';
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+enableScreens();
+const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();
 
+// =nNbB
 export default function App() {
   return (
+    <NavigationContainer>
+      <Stack.Navigator
+         screenOptions={{
+          headerShown: false
+        }}
+      >
+        <Stack.Screen name="Intro" component={IntroScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Help" component={Doicuuho} />
+        <Stack.Screen name="Level" component={Capdo} />
+        <Stack.Screen name="Confirm" component={Xacnhan} />
+        <Stack.Screen name="Confirmed" component={Chapnhan} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <IntroScreen /> 
     // <HomeScreen />
     // <Xacnhan />
-    <Chapnhan />
+    // <Chapnhan />
     // <Doicuuho />
   //  <Capdo />
     // <NavigationContainer>
