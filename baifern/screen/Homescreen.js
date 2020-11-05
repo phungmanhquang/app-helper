@@ -3,25 +3,33 @@ import { Alert, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-n
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function HomeScreen(props) {
-  const Ok = () => {
-    props.navigation.navigate('Help')
+  const Ok = (isUser) => {
+    if(isUser){
+      props.navigation.navigate('Help');
+      return;
+    }
+    props.navigation.navigate('Helper');
   }
 
-  const Cancel = () => {
-    props.navigation.navigate('Help')
+  const Cancel = (isUser) => {
+    if(isUser){
+      props.navigation.navigate('Help');
+      return;
+    }
+    props.navigation.navigate('Helper');
   }
 
-  const createTwoButtonAlert = () =>
+  const createTwoButtonAlert = (isUser) =>
     Alert.alert(
       "Cho biết vị trí ",
       "Cho phép ứng dụng truy cập vị trí của bạn ?",
       [
         {
           text: "Đồng ý ",
-          onPress: () => Ok(),
+          onPress: () => Ok(isUser),
           style: "cancel"
         },
-        { text: "Để lần sau", onPress: () => Cancel() }
+        { text: "Để lần sau", onPress: () => Cancel(isUser) }
       ],
       { cancelable: false }
     );
@@ -41,13 +49,13 @@ export default function HomeScreen(props) {
       <Text style={styles.yeucaunhap} >Bạn thuộc đội nào ?</Text>
       <TouchableOpacity 
         style={{...styles.button, ...styles.Button1}}
-        onPress={createTwoButtonAlert}  
+        onPress={() => createTwoButtonAlert(false)}  
       >
           <Text style={styles.textButton}>Đội cứu hộ</Text>
       </TouchableOpacity>
       <TouchableOpacity 
         style={{...styles.button, ...styles.Button2}}
-        onPress={createTwoButtonAlert}  
+        onPress={() => createTwoButtonAlert(true)}  
       >
           <Text style={styles.textButton}>Người cần trợ giúp</Text>
       </TouchableOpacity>

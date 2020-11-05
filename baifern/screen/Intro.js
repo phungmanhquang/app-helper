@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         paddingLeft: 24,
         paddingRight: 24,
-        marginTop: 36
+        // marginTop: 36
     }
 });

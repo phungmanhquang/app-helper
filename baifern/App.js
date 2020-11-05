@@ -11,6 +11,9 @@ import Chapnhan from './screen/Chapnhan';
 import IntroScreen from './screen/Intro';
 import { enableScreens } from 'react-native-screens';
 import { createNativeStackNavigator } from 'react-native-screens/native-stack';
+import HelperScreen from './screen/Helper';
+import ConfirmTaskScreen from './screen/ConfirmTask';
+import MapScreen from './screen/Map';
 
 enableScreens();
 const Stack = createNativeStackNavigator();
@@ -23,17 +26,53 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator
          screenOptions={{
-          headerShown: false
+          headerHideBackButton: true
         }}
       >
-        <Stack.Screen name="Intro" component={IntroScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Help" component={Doicuuho} />
-        <Stack.Screen name="Level" component={Capdo} />
-        <Stack.Screen name="Confirm" component={Xacnhan} />
-        <Stack.Screen name="Confirmed" component={Chapnhan} />
+        <Stack.Screen name="Intro" component={IntroScreen} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen name="Home" component={HomeScreen} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen name="Help" component={Doicuuho} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen name="Level" component={Capdo} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen name="Confirm" component={Xacnhan} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen name="Confirmed" component={Chapnhan} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen name="Helper" component={HelperScreen} 
+          options={{
+            title:"Danh sách công việc"
+          }}
+        />
+        <Stack.Screen name="ConfirmTask" component={ConfirmTaskScreen} 
+          options={{
+            title:'Chi tiết công việc'
+          }}
+        />
+        <Stack.Screen name="Map" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+    // <MapScreen />
     // <IntroScreen /> 
     // <HomeScreen />
     // <Xacnhan />
