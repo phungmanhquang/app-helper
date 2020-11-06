@@ -1,10 +1,21 @@
 import * as React from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import * as Permissions from 'expo-permissions'
+import * as Location from 'expo-location'
 
 export default function Xacnhan(props) {
-  const Ok = () => {
+  const [locationResult, setLocationResult] = React.useState();
+
+  const Ok =  async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+		if (status !== 'granted') {
+      setLocationResult('Permission to access location was denied')
+     
+		}
+    let location = await Location.getCurrentPositionAsync({});
     props.navigation.navigate('Confirmed')
+    setLocationResult(JSON.stringify(location));
   }
 
   return (

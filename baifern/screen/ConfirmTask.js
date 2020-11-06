@@ -1,44 +1,52 @@
 import * as React from 'react';
 import { Alert, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Data } from '../Data';
 
 export default function ConfirmTaskScreen(props) {
-	
-	const nextStep = () => {
-			props.navigation.navigate('Map')
-	}
+	const [data, setData] = React.useState()
 
+	const nextStep = () => {
+		props.navigation.navigate('Map')
+	}
+	React.useEffect(() => {
+		const id = props.route.params?.id;
+		setData(Data.find(x => x.id === id))
+	},[])
   return (
     <View style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center', paddingBottom: 32 }}>
+			
+		{data ? <>
 			<View 
 				style={styles.Item}
-      >
-          <Text style={styles.title}>
+      				>
+					<Text style={styles.title}>
 						Tên :
-						<Text style={styles.subText}> Ng Van A</Text>
+					<Text style={styles.subText}> {data.name}</Text>
 					</Text>
 					<Text style={styles.title}>
 						sđt:
-						<Text style={styles.subText}> 09876662126</Text>
+						<Text style={styles.subText}> {data.phone}</Text>
 					</Text>
 					<Text style={styles.title}>
 						Múc độ:
-						<Text style={styles.subText}> Mức độ 1</Text>
+						<Text style={styles.subText}> {data.level}</Text>
 					</Text>
 					<Text style={styles.title}>
 						Vị trí:
-						<Text style={styles.subText}> So 123 duog 123</Text>
+						<Text style={styles.subText}> {data.address}</Text>
 					</Text>
-      </View>
-			<View
-							style={styles.Button}
-			>
-			<Button
-					title="Xác nhận"
-					color="green"
-					onPress={nextStep}
-			/>
-			</View>
+					</View>
+					<View
+						style={styles.Button}
+					>
+					<Button
+							title="Xác nhận"
+							color="green"
+							onPress={nextStep}
+					/>
+					</View>
+			</> : null
+		}
     </View>
   );
 }

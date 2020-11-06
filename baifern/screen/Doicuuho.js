@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Text, View ,StyleSheet, TouchableOpacity, Image } from 'react-native';
-export default function Doicuuho (props) {
 
+
+export default function Doicuuho (props) {
     const sukienClick = () => {
         props.navigation.navigate('Level')
     }

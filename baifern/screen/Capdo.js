@@ -1,40 +1,27 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ListLevel } from '../Data';
 
 export default function Capdo(props) {
+
     const sukienClick = () => {
         props.navigation.navigate('Confirm')
+        
     }
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={styles.nguyhiem} > Hãy chọn cấp độ  </Text>
             <Text style={styles.nguyhiem} > nguy hiểm   </Text>
-            <TouchableOpacity
-                onPress={sukienClick}
-                style={{...styles.capdo, ...styles.capdo1}}
-            >
-
-                <Text style={styles.yeucau}> Tôi có thể cầm cự được !</Text>
-
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={sukienClick}
-                style={{...styles.capdo, ...styles.capdo2}}
-            >
-
-                <Text style={styles.yeucau}> Cần hỗ trợ gấp !</Text>
-
-            </TouchableOpacity>
-
-            
-
-
-
-
-
-           
-
-            
+            {
+                ListLevel.map(x => (
+                    <TouchableOpacity
+                        onPress={sukienClick}
+                        style={{...styles.capdo, backgroundColor: x.color}}
+                    >
+                        <Text style={styles.title}>{x.value}</Text>
+                    </TouchableOpacity>
+                ))
+            }
         </View>
     )
 
@@ -56,13 +43,14 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderColor: '#BDBDBD',
         alignItems: 'center',
-        paddingBottom : 23
+        marginBottom: 8,
+        marginTop: 8
     },
-    capdo1: {
-        marginBottom: 16,
-        backgroundColor: '#FA5858',
-    },
-    capdo2: {
-        backgroundColor : '#DF0101'
+    title: {
+        fontSize: 25,
+        margin: 0,
+        padding: 0,
+        fontWeight: '400',
+        color: '#fff'
     }
 })

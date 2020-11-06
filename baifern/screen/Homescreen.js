@@ -3,36 +3,14 @@ import { Alert, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-n
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function HomeScreen(props) {
-  const Ok = (isUser) => {
+
+  const createTwoButtonAlert = (isUser) => {
     if(isUser){
       props.navigation.navigate('Help');
       return;
     }
     props.navigation.navigate('Helper');
   }
-
-  const Cancel = (isUser) => {
-    if(isUser){
-      props.navigation.navigate('Help');
-      return;
-    }
-    props.navigation.navigate('Helper');
-  }
-
-  const createTwoButtonAlert = (isUser) =>
-    Alert.alert(
-      "Cho biết vị trí ",
-      "Cho phép ứng dụng truy cập vị trí của bạn ?",
-      [
-        {
-          text: "Đồng ý ",
-          onPress: () => Ok(isUser),
-          style: "cancel"
-        },
-        { text: "Để lần sau", onPress: () => Cancel(isUser) }
-      ],
-      { cancelable: false }
-    );
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

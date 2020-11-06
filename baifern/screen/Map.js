@@ -27,11 +27,9 @@ export default function MapScreen(props) {
 		if (status !== 'granted') {
 			setLocationResult('Permission to access location was denied')
 		}
-		
 		let location = await Location.getCurrentPositionAsync({});
 		setLocationResult(JSON.stringify(location));
-
-		console.log('zozozo ::: ', location)
+		console.log('locationResult ::: ', location)
 	};
 
 	React.useEffect(() => {
@@ -43,25 +41,34 @@ export default function MapScreen(props) {
 			<View 
 				style={styles.Item}
       >
-					
+				{locationResult ? 
 					<MapView
 						provider={PROVIDER_GOOGLE}
 					 	style={styles.map}
 						initialRegion={{
-							latitude: 20.9984952,
-							longitude: 105.5729541,
+							latitude: markers[0].latitude,
+							longitude: markers[0].longitude,
 							latitudeDelta: 0.0922,
 							longitudeDelta: 0.0421,
 						}}
 						annotations={markers}
 						
 					>
-						{/* <Marker
-							title="Giám định viên"
-							latitude={20.9984952}
-      				longitude={105.5729541}
-						/> */}
+						<MapView.Marker
+							coordinate={{ "latitude": markers[0].latitude,   
+							"longitude": markers[0].longitude }}
+							title={"Your Location"}
+							draggable 
+						/>
+						<MapView.Marker
+							coordinate={{ "latitude": 20.998,   
+							"longitude": 105.5721 }}
+							title={"Your Location"}
+							draggable 
+						/>
 					</MapView>
+					: null
+				}
 					{/* <Text>zxcx</Text>
 					<Text>{locationResult?.coords?.latitude || 'zozoz'}</Text> */}
       </View>
