@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Data } from "../Data";
+import { Data, ListLevel } from "../Data";
 
 const  Item =  {
     padding: 25,
@@ -49,7 +49,9 @@ export default function HelperScreen(props) {
             </Text>
             <Text style={styles.title}>
               Múc độ:
-              <Text style={styles[`text${x.level}`]}> {x.level}</Text>
+              <Text style={styles[`text${x.level}`]}> 
+                {ListLevel.find(i => i.key == x.level ).value}
+              </Text>
             </Text>
             <Text style={styles.title}>
               Vị trí:

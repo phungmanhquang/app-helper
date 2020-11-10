@@ -1,31 +1,31 @@
 export const Data = [
 	{
         id: 1,
-		name: 'Nguyen van A',
+		name: 'Nguyễn Văn A',
 		phone: '0988727123',
-		level: 1,
-		address: 'So 12 duong cau giay'
+		level: 2,
+		address: 'Số 12 đường Cầu Giấy'
 	},
 	{   
         id: 2,
-		name: 'Nguyen van A',
+		name: 'Trần Văn B',
 		phone: '0988727123',
 		level: 1,
-		address: 'So 12 duong cau giay'
+		address: 'Số 12 đường Cầu Giấy'
 	},
 	{
         id: 3,
-		name: 'Nguyen van A',
+		name: 'Nguyễn Văn A',
 		phone: '0988727123',
 		level: 1,
-		address: 'So 12 duong cau giay'
+		address: 'Số 12 đường Cầu Giấy'
 	},
 	{
         id: 4,
 		name: 'Nguyen van A',
 		phone: '0988727123',
 		level: 2,
-		address: 'So 12 duong cau giay'
+		address: 'Số 12 đường Cầu Giấy'
 	},
 	{
         id: 5,
@@ -38,22 +38,22 @@ export const Data = [
         id: 6,
 		name: 'Nguyen van A',
 		phone: '0988727123',
-		level: 3,
-		address: 'So 12 duong cau giay'
+		level: 2,
+		address: 'Số 12 đường Cầu Giấy'
 	},
 	{
         id: 7,
 		name: 'Nguyen van A',
 		phone: '0988727123',
-		level: 3,
-		address: 'So 12 duong cau giay'
+		level: 1,
+		address: 'Số 12 đường Cầu Giấy'
 	},
 	{
         id: 8,
 		name: 'Nguyen van A',
 		phone: '0988727123',
-		level: 4,
-		address: 'So 12 duong cau giay'
+		level: 2,
+		address: 'Số 12 đường Cầu Giấy'
 	}
 ]
 
@@ -68,11 +68,7 @@ export const ListLevel = [
 		value: 'Nguy cơ nguy hiểm cao',
 		color: 'orange'
 	},
-	{
-		key: 3,
-		value: 'Cần trợ giúp nhanh',
-		color: '#FFEB3B'
-	},
+	
 	{
 		key: 4,
 		value: 'Có thể cầm cự',

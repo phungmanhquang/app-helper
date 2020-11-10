@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Alert, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { Data } from '../Data';
+import { Data, ListLevel } from '../Data';
 
 export default function ConfirmTaskScreen(props) {
 	const [data, setData] = React.useState()
@@ -20,16 +20,18 @@ export default function ConfirmTaskScreen(props) {
 				style={styles.Item}
       				>
 					<Text style={styles.title}>
-						Tên :
+						Tên:
 					<Text style={styles.subText}> {data.name}</Text>
 					</Text>
 					<Text style={styles.title}>
-						sđt:
+						Số Điện Thoại:
 						<Text style={styles.subText}> {data.phone}</Text>
 					</Text>
 					<Text style={styles.title}>
-						Múc độ:
-						<Text style={styles.subText}> {data.level}</Text>
+						Mức độ:
+						<Text style={styles.subText}>
+							{ListLevel.find(i => i.key == data.level ).value}
+						</Text>
 					</Text>
 					<Text style={styles.title}>
 						Vị trí:
