@@ -9,8 +9,8 @@ export default function ConfirmTaskScreen(props) {
 		props.navigation.navigate('Map')
 	}
 	React.useEffect(() => {
-		const id = props.route.params?.id;
-		setData(Data.find(x => x.id === id))
+		const data = props.route.params?.data;
+		setData(data)
 	},[])
   return (
     <View style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center', paddingBottom: 32 }}>
@@ -21,11 +21,11 @@ export default function ConfirmTaskScreen(props) {
       				>
 					<Text style={styles.title}>
 						Tên:
-					<Text style={styles.subText}> {data.name}</Text>
+					<Text style={styles.subText}> {data.userName}</Text>
 					</Text>
 					<Text style={styles.title}>
 						Số Điện Thoại:
-						<Text style={styles.subText}> {data.phone}</Text>
+						<Text style={styles.subText}> {data.phoneNumber}</Text>
 					</Text>
 					<Text style={styles.title}>
 						Mức độ:
@@ -35,7 +35,15 @@ export default function ConfirmTaskScreen(props) {
 					</Text>
 					<Text style={styles.title}>
 						Vị trí:
-						<Text style={styles.subText}> {data.address}</Text>
+						<Text style={styles.subText}> 
+							{
+                JSON.parse(data.location).coords.latitude + " " + JSON.parse(data.location).coords.longitude
+              }
+						</Text>
+					</Text>
+					<Text style={styles.title}>
+						Mô tả:
+						<Text style={styles.subText}>{data.Desc}</Text>
 					</Text>
 					</View>
 					<View

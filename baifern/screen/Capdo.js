@@ -4,8 +4,8 @@ import { ListLevel } from '../Data';
 
 export default function Capdo(props) {
 
-    const sukienClick = () => {
-        props.navigation.navigate('Confirm')
+    const sukienClick = (level) => {
+        props.navigation.navigate('Confirm',{level})
         
     }
     return (
@@ -15,7 +15,7 @@ export default function Capdo(props) {
             {
                 ListLevel.map(x => (
                     <TouchableOpacity
-                        onPress={sukienClick}
+                        onPress={() => sukienClick(x.key)}
                         style={{...styles.capdo, backgroundColor: x.color}}
                     >
                         <Text style={styles.title}>{x.value}</Text>

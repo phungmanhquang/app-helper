@@ -1,11 +1,30 @@
 import * as React from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AsyncStorage, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import * as Permissions from 'expo-permissions'
 import * as Location from 'expo-location'
+import { firebaseApp } from '../componemts/FirebaseConfig';
 
-export default function Xacnhan(props) {
+export default function Xacnhan({navigation , route}) {
   const [locationResult, setLocationResult] = React.useState();
+  const [level, setLevel] = React.useState();
+  const [User, setUser] = React.useState();
+  const [Desc, setDesc] = React.useState();
+
+  const getUser = async () => {
+      try {
+          const value = await AsyncStorage.getItem('User');
+          setUser(JSON.parse(value))
+          return value
+      }
+      catch (error) {
+          console.log("error ::: ", error)
+          return null;
+      }
+  }
+  const renderID = function () {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
 
   const Ok =  async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -14,9 +33,36 @@ export default function Xacnhan(props) {
      
 		}
     let location = await Location.getCurrentPositionAsync({});
-    props.navigation.navigate('Confirmed')
+    if(location){
+      const data = {
+        id: renderID(),
+        phoneNumber: User?.phoneNumber,
+        userName: User?.userName,
+        level,
+        Desc,
+        location: JSON.stringify(location)
+      }
+      firebaseApp.database().ref('Tasks').push(data).then(
+        (res) => {
+          setUser(data)
+          if (isUser) {
+            props.navigation.navigate('Help');
+            return;
+          }
+          props.navigation.navigate('Helper');
+        })
+    }
+    navigation.navigate('Confirmed')
     setLocationResult(JSON.stringify(location));
   }
+
+  React.useEffect(() =>{
+    const _level = route.params?.level;
+    if(_level){
+      setLevel(_level)
+    }
+    getUser()
+  },[])
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -31,7 +77,7 @@ export default function Xacnhan(props) {
         </TouchableOpacity>
         <TouchableOpacity
           style={{ ...styles.button, ...styles.Button2 }}
-          onPress={() => props.navigation.goBack()}
+          onPress={() => navigation.goBack()}
         >
           <Text style={styles.textButton}>Chọn cấp độ khác</Text>
         </TouchableOpacity>
@@ -44,6 +90,7 @@ export default function Xacnhan(props) {
           placeholderTextColor="grey"
           numberOfLines={10}
           multiline={true}
+          onChangeText={text => setDesc(text)}
         />
       </View> 
     </View>
